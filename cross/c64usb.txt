@@ -1,0 +1,46 @@
+# This cross file defines how to build software for the dcttech 8 channel HID
+# Relay boards available to purchase from many retailers.
+
+[binaries]
+c = 'avr-gcc'
+objcopy = 'avr-objcopy'
+objdump = 'avr-objdump'
+ar = 'avr-ar'
+strip = 'avr-strip'
+size = 'avr-size'
+avrdude = 'avrdude'
+
+[built-in options]
+
+[properties]
+# The speed the device will be programmed by avrdude
+avrdude_speed = '1.1'
+
+# The speed of the CPU clock, in Hz
+cpu_speed = 16000000
+
+# FUSES:
+#
+#    N = Unprogrammed(1)
+#    Y = Programmed(0)
+#
+# BIT    LOW            HIGH
+# 7      BODLEVEL=N     RSTDSBL=N
+# 6      BODEN=N        WTDON=N
+# 5      SUT1=Y         SPIEN=Y
+# 4      SUT0=N         CLKOPT=Y
+# 3      CKSEL3=N       EESAVE=N
+# 2      CKSEL2=N       BOOTSZ1=Y
+# 1      CKSEL1=N       BOOTSZ0=Y
+# 0      CKSEL0=N       BOOTRST=N
+#
+# http://www.engbedded.com/fusecalc/
+
+lfuse = '0xdf'
+hfuse = '0xc9'
+
+[host_machine]
+system = 'baremetal'
+cpu_family = 'avr'
+cpu = 'atmega88p'
+endian = 'little'
