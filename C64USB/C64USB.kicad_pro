@@ -52,7 +52,9 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "silk_edge_clearance|151800000|84485000|07cc1330-2dac-4ff2-812f-3b878890a2a0|8ef88369-d21a-472f-b12f-4eddb23429a7"
+      ],
       "meta": {
         "version": 2
       },
@@ -477,7 +479,9 @@
     "net_colors": null,
     "netclass_assignments": {
       "/PWR": "Power",
-      "GNDREF": "Power"
+      "GNDREF": "Power",
+      "Net-(D4-A)": "Power",
+      "Net-(D4-K)": "Power"
     },
     "netclass_patterns": []
   },
