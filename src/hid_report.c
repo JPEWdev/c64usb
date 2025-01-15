@@ -9,12 +9,14 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
-void hid_report_start(struct hid_report *report, uint8_t *buffer, uint8_t len) {
-  report->data = buffer;
-  report->cur_bit = 0;
+void hid_report_init(struct hid_report *report, uint8_t len) {
+  memset(report, 0, sizeof(*report));
   report->len = len;
 }
+
+void hid_report_start(struct hid_report *report) { report->cur_bit = 0; }
 
 void hid_report_add_byte(struct hid_report *report, uint8_t byte) {
   if ((report->cur_bit % 8) != 0) {

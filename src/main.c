@@ -79,7 +79,6 @@ static const struct pin aux_pin = PIN(D, 4);
 
 #define REPORT_KEY_BYTES (REPORT_BIT_KEY_BYTES + REPORT_BYTE_KEYS)
 
-static uint8_t report_buffer[REPORT_KEY_BYTES + 1];
 static struct hid_report report;
 
 static const struct keymap *const keymap = &vice_keymap;
@@ -172,7 +171,7 @@ static void init_hid_report() {
 
 static void read_inputs() {
   ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
-    hid_report_start(&report, report_buffer, sizeof(report_buffer));
+    hid_report_start(&report);
     hid_report_add_byte(&report, KEYBOARD_REPORT_ID);
 
     for (uint8_t col = 0; col < KEY_COLS; col++) {
@@ -235,8 +234,7 @@ int main(void) {
   }
   pin_init(&aux_pin);
   pin_init(&restore_pin);
-  memset(&report, 0, sizeof(report));
-  memset(report_buffer, 0, sizeof(report_buffer));
+  hid_report_init(&report, REPORT_KEY_BYTES + 1);
 
   usbInit();
   usbDeviceDisconnect(); /* enforce re-enumeration, do this while interrupts are
