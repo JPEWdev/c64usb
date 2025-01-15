@@ -21,7 +21,7 @@
 
 #define KEYBOARD_REPORT_ID (1)
 #define POLL_RATE_MS (16)
-#define SETTLE_TIME_US (10)
+#define SETTLE_TIME_US (15)
 
 #define NUM_JOYSTICKS (2)
 
