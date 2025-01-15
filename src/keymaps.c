@@ -106,7 +106,7 @@ PROGMEM const struct keymap vice_keymap = {
     {
         /* Aux 0 - Joystick 1 down */ HID_KEY_KP_PLUS,
         /* Aux 1 - Joystick 1 up */ HID_KEY_KP_MINUS,
-        /* Aux 2 - Joystick 1 left */ HID_KEY_SLASH,
+        /* Aux 2 - Joystick 1 left */ HID_KEY_KP_SLASH,
         /* Aux 3 - Joystick 1 right */ HID_KEY_KP_ASTERIX,
         /* Aux 4 - Joystick 1 button */ HID_KEY_KP_5,
         /* Aux 5 */ HID_KEY_F8,
