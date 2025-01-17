@@ -21,7 +21,12 @@
 
 #define KEYBOARD_REPORT_ID (1)
 #define POLL_RATE_MS (16)
-#define SETTLE_TIME_US (15)
+#define SETTLE_TIME_US (100)
+
+// Settle time must be less than the poll rate and also less than the maximum
+// settle time
+_Static_assert(SETTLE_TIME_US * 9 <= POLL_RATE_MS * 1000,
+               "Settle time is too long");
 
 #define NUM_JOYSTICKS (2)
 
@@ -85,6 +90,7 @@ static const struct keymap *const keymap = &vice_keymap;
 
 // Idle rate is in multiples of 4 milliseconds
 static uint8_t idle_rate;
+static uint32_t last_idle;
 
 /* clang-format off */
 PROGMEM static const uint8_t usb_hid_report_descriptor_header[] = {
@@ -169,54 +175,80 @@ static void init_hid_report() {
   }
 }
 
-static void read_inputs() {
-  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
-    hid_report_start(&report);
-    hid_report_add_byte(&report, KEYBOARD_REPORT_ID);
+static void poll_loop() {
+  uint32_t now = get_milliseconds();
 
-    for (uint8_t col = 0; col < KEY_COLS; col++) {
-      pin_set(&cols[col], PIN_INPUT);
-    }
+  wdt_reset();
+  usbPoll();
 
-    for (uint8_t row = 0; row < KEY_ROWS; row++) {
-      pin_set(&rows[row], PIN_INPUT);
-    }
-    pin_set(&restore_pin, PIN_INPUT);
-
-    // Read auxiliary inputs
-    pin_set(&aux_pin, PIN_OUTPUT_LO);
-    _delay_us(SETTLE_TIME_US);
-    for (uint8_t i = 0; i < KEY_AUX; i++) {
-      hid_report_add_bit(&report, pin_read(&aux[i]));
-    }
-    pin_set(&aux_pin, PIN_HIGH_Z);
-
-    // Read restore pin
-    hid_report_add_bit(&report, pin_read(&restore_pin));
-
-    hid_report_fill_bits(&report, REPORT_CONST_BITS);
-
-    for (uint8_t row = 0; row < KEY_ROWS; row++) {
-      pin_set(&rows[row], PIN_HIGH_Z);
-    }
-
-    for (uint8_t row = 0; row < KEY_ROWS; row++) {
-      pin_set(&rows[row], PIN_OUTPUT_LO);
-      _delay_us(SETTLE_TIME_US);
-      for (uint8_t col = 0; col < KEY_COLS; col++) {
-        if (pin_read(&cols[col])) {
-          hid_report_add_byte(&report, pgm_read_byte(&keymap->keys[row][col]));
-        }
-      }
-      pin_set(&rows[row], PIN_HIGH_Z);
-    }
-
-    for (uint8_t row = 0; row < KEY_ROWS; row++) {
-      pin_set(&rows[row], PIN_INPUT);
-    }
-
-    hid_report_finish(&report);
+  if (usbInterruptIsReady() &&
+      (report.changed || (idle_rate && (now - last_idle >= idle_rate * 4)))) {
+    report.changed = false;
+    usbSetInterrupt(report.data, report.len);
+    last_idle = now;
   }
+}
+
+static void read_settle() {
+  poll_loop();
+  _delay_us(SETTLE_TIME_US);
+}
+
+static void read_inputs() {
+  struct hid_report r;
+
+  // Make a copy of the report so we don't have to keep interrupts disabled
+  // while sleeping
+  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) { r = report; }
+
+  hid_report_start(&r);
+  hid_report_add_byte(&r, KEYBOARD_REPORT_ID);
+
+  for (uint8_t col = 0; col < KEY_COLS; col++) {
+    pin_set(&cols[col], PIN_INPUT);
+  }
+
+  for (uint8_t row = 0; row < KEY_ROWS; row++) {
+    pin_set(&rows[row], PIN_INPUT);
+  }
+  pin_set(&restore_pin, PIN_INPUT);
+
+  // Read auxiliary inputs
+  pin_set(&aux_pin, PIN_OUTPUT_LO);
+  read_settle();
+  for (uint8_t i = 0; i < KEY_AUX; i++) {
+    hid_report_add_bit(&r, pin_read(&aux[i]));
+  }
+  pin_set(&aux_pin, PIN_HIGH_Z);
+
+  // Read restore pin
+  hid_report_add_bit(&r, pin_read(&restore_pin));
+
+  hid_report_fill_bits(&r, REPORT_CONST_BITS);
+
+  for (uint8_t row = 0; row < KEY_ROWS; row++) {
+    pin_set(&rows[row], PIN_HIGH_Z);
+  }
+
+  for (uint8_t row = 0; row < KEY_ROWS; row++) {
+    pin_set(&rows[row], PIN_OUTPUT_LO);
+    read_settle();
+    for (uint8_t col = 0; col < KEY_COLS; col++) {
+      if (pin_read(&cols[col])) {
+        hid_report_add_byte(&r, pgm_read_byte(&keymap->keys[row][col]));
+      }
+    }
+    pin_set(&rows[row], PIN_HIGH_Z);
+  }
+
+  for (uint8_t row = 0; row < KEY_ROWS; row++) {
+    pin_set(&rows[row], PIN_INPUT);
+  }
+
+  hid_report_finish(&r);
+
+  // Update report
+  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) { report = r; }
 }
 
 int main(void) {
@@ -254,11 +286,10 @@ int main(void) {
 
   sei();
   uint32_t last_key_poll = get_milliseconds();
-  uint32_t last_idle = get_milliseconds();
+  last_idle = get_milliseconds();
 
   while (true) {
-    wdt_reset();
-    usbPoll();
+    poll_loop();
 
     uint32_t now = get_milliseconds();
 
@@ -267,13 +298,6 @@ int main(void) {
       read_inputs();
       set_debug_leds(report.data[3]);
       last_key_poll = now;
-    }
-
-    if (usbInterruptIsReady() &&
-        (report.changed || (idle_rate && (now - last_idle >= idle_rate * 4)))) {
-      report.changed = false;
-      usbSetInterrupt(report.data, report.len);
-      last_idle = now;
     }
   }
 }
@@ -296,8 +320,8 @@ usbMsgLen_t usbFunctionSetup(uchar data[8]) {
 
     } else if (request->bRequest == USBRQ_HID_SET_IDLE) {
       idle_rate = request->wValue.bytes[1];
+      last_idle = get_milliseconds();
     }
   }
   return 0;
 }
-
