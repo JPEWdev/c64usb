@@ -3021,175 +3021,6 @@
 				)
 			)
 		)
-		(symbol "Device:LED"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "LED"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Light emitting diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "LED diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "LED_0_1"
-				(polyline
-					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "LED_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:R_US"
 			(pin_numbers hide)
 			(pin_names
@@ -4260,12 +4091,6 @@
 		(uuid "4f760483-ee87-412a-80bc-6d94c2e17d3f")
 	)
 	(junction
-		(at 203.2 119.38)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "56ee196d-2738-4304-85b5-e96c15943558")
-	)
-	(junction
 		(at 262.89 33.02)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4364,16 +4189,6 @@
 			(type default)
 		)
 		(uuid "114996cd-7f0e-4080-94eb-de1cbf79e8b0")
-	)
-	(wire
-		(pts
-			(xy 203.2 119.38) (xy 205.74 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "165231f8-e073-430a-b27b-f8e41b0c8b51")
 	)
 	(wire
 		(pts
@@ -4707,16 +4522,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 129.54) (xy 203.2 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "63e336c7-b0dc-412b-80a6-87d93824dd25")
-	)
-	(wire
-		(pts
 			(xy 247.65 25.4) (xy 243.84 25.4)
 		)
 		(stroke
@@ -4824,16 +4629,6 @@
 			(type default)
 		)
 		(uuid "793574ba-5ab2-4538-8851-8339c61653bb")
-	)
-	(wire
-		(pts
-			(xy 214.63 129.54) (xy 203.2 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7f4bb056-f989-4f7f-ac08-f8d2545a67b8")
 	)
 	(wire
 		(pts
@@ -5047,16 +4842,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 119.38) (xy 227.33 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b70ad3e-76ec-4e9f-9d09-7035e5a95c85")
-	)
-	(wire
-		(pts
 			(xy 50.8 182.88) (xy 55.88 182.88)
 		)
 		(stroke
@@ -5187,16 +4972,6 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 119.38) (xy 215.9 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b59fc386-4c97-4e73-bc4e-2b7bcc4024b3")
-	)
-	(wire
-		(pts
 			(xy 171.45 134.62) (xy 171.45 137.16)
 		)
 		(stroke
@@ -5284,6 +5059,16 @@
 			(type default)
 		)
 		(uuid "bfbb13db-ebb7-4624-b62d-2339e9487f89")
+	)
+	(wire
+		(pts
+			(xy 186.69 119.38) (xy 191.77 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c17442e3-c9b8-47fc-9bdf-41c8017bdb6d")
 	)
 	(wire
 		(pts
@@ -5584,16 +5369,6 @@
 			(type default)
 		)
 		(uuid "f07b1a6c-92fd-4a63-b8a4-5aeae218b2d9")
-	)
-	(wire
-		(pts
-			(xy 186.69 119.38) (xy 203.2 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f0fb42f9-1997-4124-b68e-894325d2263d")
 	)
 	(wire
 		(pts
@@ -7001,7 +6776,7 @@
 		(uuid "a3036eaa-1409-4061-b0eb-64fdcbbe82e2")
 	)
 	(label "AUX"
-		(at 214.63 129.54 0)
+		(at 191.77 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7429,17 +7204,6 @@
 		)
 		(uuid "f78ef70f-b1f4-4bca-aa8d-f2cfdbbbf6ca")
 	)
-	(label "PWR"
-		(at 227.33 119.38 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f88e904f-adc3-42e0-930a-df065c70eda8")
-	)
 	(label "ROW_7"
 		(at 191.77 121.92 0)
 		(fields_autoplaced yes)
@@ -7586,73 +7350,6 @@
 			(project ""
 				(path "/683b04d7-2177-49fe-8cac-bb0e8fe56ae0"
 					(reference "J4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED")
-		(at 219.71 119.38 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "108ff986-49a5-40ac-988d-a4bb3662bd53")
-		(property "Reference" "D3"
-			(at 218.186 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LED"
-			(at 218.186 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
-			(at 219.71 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 219.71 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 219.71 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "15afc87f-a7e9-42c7-bf2f-703259855066")
-		)
-		(pin "2"
-			(uuid "c0fa5436-bc0f-404d-a04e-115f0073cf03")
-		)
-		(instances
-			(project ""
-				(path "/683b04d7-2177-49fe-8cac-bb0e8fe56ae0"
-					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -9375,73 +9072,6 @@
 			(project ""
 				(path "/683b04d7-2177-49fe-8cac-bb0e8fe56ae0"
 					(reference "A13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 209.55 119.38 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c6f1e091-358b-48d6-ab53-e9abad2afb6d")
-		(property "Reference" "R5"
-			(at 209.55 124.46 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "120"
-			(at 209.55 121.92 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
-			(at 209.804 118.364 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 209.55 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 209.55 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "1eb32212-b1c8-406e-9fc1-f6384bd88a07")
-		)
-		(pin "1"
-			(uuid "410bf629-66c9-4a53-b9f1-ca9f08373b85")
-		)
-		(instances
-			(project "C64USB"
-				(path "/683b04d7-2177-49fe-8cac-bb0e8fe56ae0"
-					(reference "R5")
 					(unit 1)
 				)
 			)
