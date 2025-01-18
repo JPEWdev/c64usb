@@ -4667,16 +4667,6 @@
 	)
 	(wire
 		(pts
-			(xy 247.65 140.97) (xy 247.65 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5c28486f-8f33-4f67-8361-93855ff7433c")
-	)
-	(wire
-		(pts
 			(xy 213.36 46.99) (xy 213.36 49.53)
 		)
 		(stroke
@@ -4747,7 +4737,7 @@
 	)
 	(wire
 		(pts
-			(xy 247.65 151.13) (xy 247.65 154.94)
+			(xy 247.65 140.97) (xy 247.65 144.78)
 		)
 		(stroke
 			(width 0)
@@ -6703,7 +6693,7 @@
 		(uuid "37eb01d8-470e-4457-bd3b-79b05894b17b")
 	)
 	(label "PWR"
-		(at 247.65 154.94 0)
+		(at 247.65 144.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7475,52 +7465,6 @@
 		(uuid "191e38a0-bff9-4e2f-90ca-c1039a1dc83a")
 		(property "Netclass" "Power"
 			(at 220.4085 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-			)
-		)
-	)
-	(netclass_flag ""
-		(length 2.54)
-		(shape round)
-		(at 247.65 132.08 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "73466355-aeeb-4410-80a4-989b3cc42b3d")
-		(property "Netclass" "Power"
-			(at 250.19 131.3815 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-			)
-		)
-	)
-	(netclass_flag ""
-		(length 2.54)
-		(shape round)
-		(at 247.65 143.51 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ea2cf4cc-ab7b-4efe-9b13-04c56425ab0a")
-		(property "Netclass" "Power"
-			(at 245.11 142.8115 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9431,94 +9375,6 @@
 			(project ""
 				(path "/683b04d7-2177-49fe-8cac-bb0e8fe56ae0"
 					(reference "A13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D")
-		(at 247.65 147.32 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "affce98c-a3b8-4fd5-a2f5-f3ac4cc119a3")
-		(property "Reference" "D5"
-			(at 250.19 146.0499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N4148"
-			(at 250.19 148.5899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7ac33a08-b638-41dc-b769-8fdcae9e7086")
-		)
-		(pin "1"
-			(uuid "fb34c372-3f61-40f7-93d0-11e05d406aa0")
-		)
-		(instances
-			(project "C64USB"
-				(path "/683b04d7-2177-49fe-8cac-bb0e8fe56ae0"
-					(reference "D5")
 					(unit 1)
 				)
 			)
