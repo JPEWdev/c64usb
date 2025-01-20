@@ -6324,6 +6324,16 @@
 			"DOIQi3jEJC6xiU+M4hSreMWcLQAAOw=="
 		)
 	)
+	(text "Back Power\nProtection"
+		(exclude_from_sim no)
+		(at 240.03 137.16 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "ef6ac26c-1eb1-409d-957b-35dccbf27c96")
+	)
 	(label "XTAL2"
 		(at 267.97 33.02 0)
 		(fields_autoplaced yes)
