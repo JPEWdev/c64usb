@@ -219,7 +219,7 @@ static void read_inputs() {
   for (uint8_t i = 0; i < KEY_AUX; i++) {
     hid_report_add_bit(&r, pin_read(&aux[i]));
   }
-  pin_set(&aux_pin, PIN_HIGH_Z);
+  pin_set(&aux_pin, PIN_OUTPUT_HI);
 
   // Read restore pin
   hid_report_add_bit(&r, pin_read(&restore_pin));
@@ -265,6 +265,7 @@ int main(void) {
     pin_init(&rows[row]);
   }
   pin_init(&aux_pin);
+  pin_set(&aux_pin, PIN_OUTPUT_HI);
   pin_init(&restore_pin);
   hid_report_init(&report, REPORT_KEY_BYTES + 1);
 
